@@ -47,7 +47,6 @@ yarn-error.log
 /.nyc_output
 /packages/graphql
 build/config\.gypi
-
 .npmrc
 pnpm-lock.yaml
 /.history
