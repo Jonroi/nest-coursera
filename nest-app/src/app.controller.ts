@@ -1,4 +1,13 @@
-import { Controller, Get, Query, Post, Body } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Query,
+  Post,
+  Body,
+  Res,
+  Req,
+  BadRequestException,
+} from '@nestjs/common';
 import { AppService } from './app.service';
 import { SumServiceService } from './sum-service/sum-service.service';
 import { AnswerDto } from './dto/app.dto';
@@ -21,8 +30,16 @@ export class AppController {
   }
 
   @Post('answer')
-  answer(@Body() getAnswerDto: AnswerDto): string {
-    return getAnswerDto.answer;
+  answer(@Body() getAnswerDto: AnswerDto, @Req() req: any, @Res() res: any) {
+    let response;
+    let status;
+    if (req.body.answer === 'yes') {
+      response = 'it is yes';
+      status = 200;
+    } else {
+      throw new BadRequestException();
+    }
+    res.status(status).json({ res: response });
   }
 
   @Get()
