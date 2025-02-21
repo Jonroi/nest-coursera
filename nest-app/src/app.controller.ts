@@ -1,6 +1,7 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Query, Post, Body } from '@nestjs/common';
 import { AppService } from './app.service';
 import { SumServiceService } from './sum-service/sum-service.service';
+import { AnswerDto } from './dto/app.dto';
 
 @Controller()
 export class AppController {
@@ -10,8 +11,18 @@ export class AppController {
   ) {}
 
   @Get('/sum')
-  getSum(@Query('a') a: number, @Query('b') b: number): number {
-    return this.sumService.getSum(a, b);
+  getSum(@Query('num1') a: string, @Query('num2') b: string): number {
+    return parseInt(this.sumService.getSum(a, b));
+  }
+
+  @Get('/askquestion')
+  askQuestion(): string {
+    return 'how are you?';
+  }
+
+  @Post('answer')
+  answer(@Body() getAnswerDto: AnswerDto): string {
+    return getAnswerDto.answer;
   }
 
   @Get()
