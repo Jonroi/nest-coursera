@@ -7,6 +7,6 @@ export declare class AppController {
     constructor(appService: AppService, sumService: SumServiceService);
     getSum(a: string, b: string): number;
     askQuestion(): string;
-    answer(getAnswerDto: AnswerDto): string;
+    answer(getAnswerDto: AnswerDto, req: any, res: any): void;
     getHello(): string;
 }
