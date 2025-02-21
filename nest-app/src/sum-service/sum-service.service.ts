@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 @Injectable()
 export class SumServiceService {
-  getSum(a: number, b: number): number {
-    return a + b;
+  getSum(a: string, b: string): string {
+    return (parseInt(a) + parseInt(b)).toString();
   }
 }
